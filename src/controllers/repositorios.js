@@ -18,10 +18,16 @@ exports.getRepositorios = async (_req, res) => {
     if(reps){
         const response = reps.map((rep)=>{
             return {
-                image: rep.owner.avatar_url,
-                title: rep.name,
-                desc: rep.description
-            }
+                    header: {
+                        type: "application/vnd.lime.media-link+json",
+                        value: {
+                            title: rep.name,
+                            text: rep.description,
+                            type: "image/jpeg",
+                            uri: rep.owner.avatar_url
+                        }
+                    }
+                }
         });
         return res.status(200).send(response);
     }
