@@ -29,7 +29,10 @@ exports.getRepositorios = async (_req, res) => {
                     }
                 }
         });
-        return res.status(200).send(response);
+        return res.status(200).send({
+            itemType: "application/vnd.lime.document-select+json",
+            items: response
+        });
     }
     return res.status(406).send({msg: 'Nenhum repositório encontrado'});
   } catch (error) {
