@@ -12,6 +12,7 @@
     "lint:fix": "eslint --fix ."
   },
   "dependencies": {
+    "axios": "^0.21.1",
     "cookie-parser": "~1.4.3",
     "express": "~4.16.0",
     "helmet": "^3.21.1",
