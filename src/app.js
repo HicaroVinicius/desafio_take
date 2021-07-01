@@ -3,6 +3,7 @@ const createError = require('http-errors');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const helmet = require('helmet');
+var path = require('path');
 
 const indexRouter = require('./routes/index');
 
@@ -17,7 +18,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 app.use('/', indexRouter);
-app.use('/images', express.static('images/'));
+
+var dir = path.join(__dirname, 'public');
+app.use(express.static(dir));
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
