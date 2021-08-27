@@ -8,7 +8,7 @@ async function getReps() {
     const response = await axios.get(`https://api-content.ingresso.com/v0/sessions/city/2/theater/14/partnership/ancar_novaamerica`);
     console.log(response.data)
     if (response && response.data && response.data.length > 0) {
-      return response.data[0];
+      return [response.data[0], response.data[1], response.data[2]];
     }
     return [];
   } catch (error) {
@@ -19,8 +19,7 @@ async function getReps() {
 exports.getRepositorios = async (_req, res) => {
   try {
     // Função recursiva que enquanto não recuperar os 5 primeiros repositórios em C# segue realizando buscas nas páginas seguintes.
-    const r = await getReps();
-    const reps = [r];
+    const reps = await getReps();
     console.log(reps)
     console.log(reps.length)
     if (reps.length > 0) {
