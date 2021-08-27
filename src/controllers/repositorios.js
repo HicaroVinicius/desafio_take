@@ -13,7 +13,31 @@ async function getReps() {
           dateFormatted: item.dateFormatted,
           "date": item.date,
           "dayOfWeek": item.dayOfWeek,
-          "isToday": item.isToday
+          "isToday": item.isToday,
+          movies: item.movies.map(movie => {
+            return {
+              "id": movie.id,
+              "title": movie.title,
+              siteURL: movie.siteURL,
+              images: movie.images[0],
+              genres: movie.genres,
+              contentRating: movie.contentRating,
+              rooms: movie.rooms.map(room => {
+                return {
+                  name: room.name,
+                  sessions: room.sessions.map(session => {
+                    return {
+                      price: session.price,
+                      type: session.type,
+                      types: session.types,
+                      siteURL: session.siteURL,
+                      time: session.time,
+                    }
+                  })
+                }
+              }),
+            }
+          })
         }
       });
       return out;
