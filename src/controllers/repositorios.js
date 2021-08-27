@@ -6,8 +6,8 @@ const axios = require('axios');
 async function getReps() {
   try {
     const response = await axios.get(`https://api-content.ingresso.com/v0/sessions/city/2/theater/14/partnership/ancar_novaamerica`);
-    if (response && response.data && response.data.length > 0) {
-      return response.data[0];
+    if (response && response.length > 0) {
+      return response[0];
     }
     return [];
   } catch (error) {
